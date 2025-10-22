@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../pages/details.dart';
 
 class Tab1 extends StatelessWidget {
   final List<String> imgList = [
@@ -30,27 +31,42 @@ class Tab1 extends StatelessWidget {
             items: imgList.map((item) {
               return Builder(
                 builder: (BuildContext context) {
-                  return Stack(
-                    children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.asset(
-                            item,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
+                  return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Details(
+                                imagePath: item,
+                                title: 'Mount Fuji, Tokyo',
+                                location: 'Tokyo, Japan',
+                                rating: 4.8,
+                              ),
+                            ),
+                          );
+                        },
+                        child:  Stack(
+                        children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Image.asset(
+                                item,
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                              ),
+                            ),
+                          Positioned(
+                            bottom: 50,
+                            left: 16,
+                            right: 16,
+                            child: DestinationInfoOverlay(
+                              title: 'Mount Fuji, Tokyo',
+                              location: 'Tokyo, Japan',
+                              rating: 4.8,
+                            ),
                           ),
-                        ),
-                      Positioned(
-                        bottom: 50,
-                        left: 16,
-                        right: 16,
-                        child: DestinationInfoOverlay(
-                          title: 'Mount Fuji, Tokyo',
-                          location: 'Tokyo, Japan',
-                          rating: 4.8,
-                        ),
+                        ]
                       ),
-                    ]
                   );
                 },
               );
