@@ -80,7 +80,7 @@ class DestinationInfoOverlay extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.7), // Semi-transparent dark background
+        color:Colors.black.withValues(alpha: 0.7),// Semi-transparent dark background
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
